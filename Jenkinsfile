@@ -72,7 +72,7 @@ pipeline{
     steps {
         script {
             sh "docker build -t saikumar ."
-            sh "docker image tag saikumar:latest obama:latest"
+            sh "docker image tag saikumar saikumarpinisetti/obama:latest"
         }
     }
 }
@@ -89,7 +89,7 @@ pipeline{
             script{
                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'Pass', usernameVariable: 'User')]) {
     sh 'docker login -u saikumarpinisetti -p Supershot#143'
-                sh 'docker image push saikumarpinisetti/saikumar'
+                sh 'docker image push saikumar'
             }
 
             }
