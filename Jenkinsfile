@@ -1,4 +1,3 @@
-@Library('my-shared-library') _
 pipeline{
 
     agent any
@@ -6,20 +5,17 @@ pipeline{
         stage('git checkout'){
         steps{
             script{
-                gitCheckout(
-                    branch: "main",
-                    url: "https://github.com/saikumarpinisetti3/mrdevops_java_app.git"
-                )
+                git branch: 'main', url: 'https://github.com/saikumarpinisetti3/mrdevops_java_app.git'
 
              }
          }
      }
-        stage('Unit Test Maven'){
-            steps{
-                script{
-                    mvnTest()
-                }
+        stage('Unit testing'){
+        steps{
+            script{
+                sh 'mvn test'
             }
         }
+     }
     }
 }
