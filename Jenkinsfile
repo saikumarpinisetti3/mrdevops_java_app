@@ -71,8 +71,8 @@ pipeline{
     }
     steps {
         script {
-            sh "docker build -t ${JOB_NAME}/${JOB_ID} ."
-            sh "docker image tag ${JOB_NAME}/${JOB_ID}:latest"
+            sh "docker build -t saikumar ."
+            sh "docker image tag saikumar:latest"
         }
     }
 }
