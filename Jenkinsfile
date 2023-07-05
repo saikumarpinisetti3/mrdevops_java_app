@@ -71,8 +71,13 @@ pipeline{
     }
     steps {
         script {
+            withCredentials([usernamePassword(credentialsId 'docker', passwordVariable: 'Pass', usernameVariable: 'User')]) {
+    
             sh "docker build -t saikumar ."
             sh "docker image tag saikumar saikumarpinisetti/obama:latest"
+            sh 'docker login -u saikumarpinisetti -p Supershot#143'
+                sh 'docker image push saikumar'
+            }
         }
     }
 }
@@ -87,9 +92,7 @@ pipeline{
         stage('pushing to docker hub'){
         steps{
             script{
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'Pass', usernameVariable: 'User')]) {
-    sh 'docker login -u saikumarpinisetti -p Supershot#143'
-                sh 'docker image push saikumar'
+                
             }
 
             }
