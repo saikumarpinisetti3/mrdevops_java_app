@@ -87,8 +87,11 @@ pipeline{
         stage('pushing to docker hub'){
         steps{
             script{
-                sh 'docker login -u saikumarpinisetti -p Supershot#143 docker.io'
+                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'Pass', usernameVariable: 'User')]) {
+    sh 'docker login -u saikumarpinisetti -p Supershot#143'
                 sh 'docker image push saikumar:latest'
+            }
+}
             }
                 
             }
