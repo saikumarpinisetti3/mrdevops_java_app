@@ -53,7 +53,13 @@ pipeline{
         steps{
             script{
                 waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
-                sh 'mvn clean install'
+            }
+        }
+     }
+         stage('Maven build:maven'){
+        steps{
+            script{
+                      sh 'mvn clean install'
             }
         }
      }
