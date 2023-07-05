@@ -72,7 +72,7 @@ pipeline{
     steps {
         script {
             sh "docker build -t saikumar ."
-            sh "docker image tag saikumar:latest"
+            sh "docker image tag saikumar:latest obama:latest"
         }
     }
 }
