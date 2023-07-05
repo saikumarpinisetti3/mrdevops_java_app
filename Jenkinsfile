@@ -87,7 +87,7 @@ pipeline{
         stage('pushing to docker hub'){
         steps{
             script{
-                sh 'docker login -u saikumarpinisetti -p Supershot#143'
+                sh 'docker login -u saikumarpinisetti -p Supershot#143 docker.io'
                 sh 'docker image push saikumar:latest'
             }
                 
