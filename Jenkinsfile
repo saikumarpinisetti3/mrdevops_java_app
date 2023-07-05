@@ -76,5 +76,13 @@ pipeline{
         }
     }
 }
+        stage('image scanning:trivy'){
+        steps{
+            script{
+                sh 'trivy image saikumar:latest obama:latest > scan.txt'
+                sh 'cat scan.txt'
+            }
+        }
+    }
     }
 }
