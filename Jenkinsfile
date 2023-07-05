@@ -71,15 +71,15 @@ pipeline{
     }
     steps {
         script {
-            sh "docker build -t saikumar1 ."
-            sh "docker image tag saikumar1:latest obama1:latest"
+            sh "docker build -t saikumar ."
+            sh "docker image tag saikumar:latest obama:latest"
         }
     }
 }
         stage('image scanning:trivy'){
         steps{
             script{
-                sh 'trivy image saikumar1:latest obama1:latest > scan.txt'
+                sh 'trivy image saikumar:latest > scan.txt'
                 sh 'cat scan.txt'
             }
         }
