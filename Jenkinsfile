@@ -65,5 +65,16 @@ pipeline{
             }
         }
      }
+         stage('docker image build') {
+    when {
+        expression { params.action == 'create' }
+    }
+    steps {
+        script {
+            sh "docker build -t ${JOB_NAME}/${JOB_ID} ."
+            sh "docker image tag ${JOB_NAME}/${JOB_ID}:latest"
+        }
+    }
+}
     }
 }
