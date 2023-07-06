@@ -80,3 +80,10 @@ resource "aws_iam_policy_attachment" "eks_cluster_policy_attachment" {
   roles      = [aws_iam_role.eks_cluster.name]
 }
 
+
+
+resource "aws_iam_policy_attachment" "eks_cluster_policy_attachment" {
+  policy_arn = aws_iam_policy.eks_cluster_policy.arn
+  roles      = [aws_iam_role.eks_cluster.name]
+}
+
