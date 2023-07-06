@@ -76,5 +76,28 @@ pipeline{
             }
         }
      }
+stage('image scanning'){
+        when{
+            expression{params.action == 'create'}
+        }
+        steps{
+            script{
+                sh "trivy image 185869047570.dkr.ecr.ap-south-1.amazonaws.com/saikumarpinisetti:latest > scan.txt"
+                sh "cat scan.txt"
+            }
+        }
+     }
+     stage('docker image push'){
+        when{
+            expression{params.action == 'create'}
+        }
+        steps{
+            script{
+                sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 185869047570.dkr.ecr.ap-south-1.amazonaws.com"
+                sh "docker push 185869047570.dkr.ecr.ap-south-1.amazonaws.com/saikumarpinisetti:latest"
+            }
+        }
+
+     }
     }
 }
