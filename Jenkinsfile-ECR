@@ -20,8 +20,8 @@ pipeline{
         script {
             dir('eks_module') {
                 sh 'terraform init'
-                sh "terraform plan -var 'access_key=${access_key}' -var 'secret_key=${secret_access_key}' -var 'region=ap-south-1' --var-files=./config/terraform.tfvars"
-                sh "terraform apply -var 'access_key=${access_key}' -var 'secret_key=${secret_access_key}' -var 'region=ap-south-1' --var-files=./config/terraform.tfvars --auto-approve"
+                sh "terraform plan -var 'access_key=AKIASWRVIS4JP2OAWR4O' -var 'secret_key=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' -var 'region=ap-south-1' --var-files=./config/terraform.tfvars"
+                sh "terraform apply -var 'access_key=AKIASWRVIS4JP2OAWR4O' -var 'secret_key=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' -var 'region=ap-south-1' --var-files=./config/terraform.tfvars --auto-approve"
             }
         }
     }
