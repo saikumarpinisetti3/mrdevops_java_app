@@ -11,6 +11,16 @@ pipeline{
     }
 
     stages{
+ stage('git checkout'){
+             when{expression{params.action == 'create'}
+            }
+        steps{
+            script{
+                git branch: 'main', url: 'https://github.com/saikumarpinisetti3/mrdevops_java_app.git'
+
+             }
+         }
+     }
 
         stage('create eks cluster') {
              when{
