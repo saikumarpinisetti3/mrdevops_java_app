@@ -30,5 +30,20 @@ pipeline{
                 }
             }
         }
+        stage('qualitygate analysis'){
+            steps{
+                script{
+                    waitForQualityGate abortPipeline: false, credentialsId: 'devops'
+                    
+                }
+            }
+        }
+        stage('creating the Maven build :MAVEN'){
+            steps{
+                script{
+                    sh 'mvn clean install'
+                }
+            }
+        }
     }
 }
