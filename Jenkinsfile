@@ -14,10 +14,19 @@ pipeline{
                 }
             }
         }
-        stage('Integration tests with: maven'){
+        stage('integration test with maven'){
             steps{
                 script{
                     sh 'mvn verify -DskipUnitTests'
+                }
+            }
+        }
+        stage('static code  analysis:sonarqube'){
+            steps{
+                script{
+                        withSonarQubeEnv(credentialsId: 'devops') {
+                           sh 'mvn clean package sonar:sonar' 
+                        }
                 }
             }
         }
