@@ -12,90 +12,10 @@ pipeline{
 
     stages{
 
-        stage('git checkout'){
-             when{expression{params.action == 'create'}
-            }
-        steps{
-            script{
-                git branch: 'main', url: 'https://github.com/saikumarpinisetti3/mrdevops_java_app.git'
-
-             }
-         }
-     }
-     stage('Unit testing'){
-         when{expression{params.action == 'create'}
-           }   
-        steps{
-            script{
-                sh 'mvn clean   '
-            }
-        }
-     }
-     stage('integration testing'){
-         when{expression{params.action == 'create'}
-              }
-        steps{
-            script{
-                    sh 'mvn verify -DskipUnitTests'
-            }
-        }
-     }
-     stage('static code analysis'){
-        when{expression{params.action == 'create'}
-              }
-        steps{
-            script{
-                    withSonarQubeEnv(credentialsId: 'sonarqube') {
-                        sh 'mvn clean package sonar:sonar'
-                    }
-            }
-        }
-     }
-     stage('waitfor qualitygate'){
-        when{expression{params.action == 'create'}
-              }
-        steps{
-            script{
-                waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
-            }
-        }
-     }
-     stage('Maven build:maven'){
-         when{expression{params.action == 'create'}
-              }
-        steps{
-            script{
-                      sh 'mvn clean install'
-            }
-        }
-     }
-     stage('docker build in ecr'){
-        when{
-            expression{params.action == 'create'}
-        }
-        steps{
-            script{
-                    sh 'docker build -t saikumarpinisetti .'
-                    sh "docker tag saikumarpinisetti:latest 185869047570.dkr.ecr.ap-south-1.amazonaws.com/saikumarpinisetti:latest"
-            }
-        }
-     }
-stage('image scanning'){
-        when{
-            expression{params.action == 'create'}
-        }
-        steps{
-            script{
-                sh "trivy image 185869047570.dkr.ecr.ap-south-1.amazonaws.com/saikumarpinisetti:latest > scan.txt"
-                sh "cat scan.txt"
-            }
-        }
-     }
-     stage('docker image push'){
-        when{
-            expression{params.action == 'create'}
-        }
         stage('create eks cluster') {
+             when{
+            expression{params.action == 'create'}
+        }
     steps {
         script {
             dir('eks_module') {
@@ -106,5 +26,5 @@ stage('image scanning'){
         }
     }
 }
-    }
+}
 }
