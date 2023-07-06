@@ -93,8 +93,8 @@ stage('image scanning'){
         }
         steps{
             script{
-                sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 185869047570.dkr.ecr.ap-south-1.amazonaws.com"
-                sh "docker push 185869047570.dkr.ecr.ap-south-1.amazonaws.com/saikumarpinisetti:latest"
+                sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 185869047570.dkr.ecr.ap-south-1.amazonaws.com'
+                sh 'docker push 185869047570.dkr.ecr.ap-south-1.amazonaws.com/saikumarpinisetti:latest'
             }
         }
 
