@@ -69,7 +69,7 @@ pipeline{
     stage('pushing to docker hub: docker hub'){
         steps{
             script{
-                sh 'docker build -t devops'
+                sh 'docker build -t devops .'
                 sh 'docker image tag devops saikumarpinisetti/devops:v1'
                 sh 'docker image tag devops saikumarpinisetti/devops:latest'
                 sh 'docker login -u saikumarpinisetti -p Supershot#143'
