@@ -1,5 +1,10 @@
 pipeline{
     agent any
+
+    environment{
+            access_key= credentials('AWS_ACCESS_KEY_ID')
+            secret_key= credentials('AWS_SECRET_KEY_ID')
+    }
     stages{
         stage('git check out'){
             steps{
@@ -83,6 +88,25 @@ pipeline{
             script{
                     sh 'trivy image saikumarpinisetti/devops:latest > scan.txt'
                     sh 'cat scan.txt'
+            }
+        }
+    }
+         stage('connect  to eks'){
+        steps{
+            script{
+                sh """
+                aws configure set aws_access_key_id "$access_key"
+                aws configure set aws_secret_access_key "$secret_key"
+                aws configure set region "ap-south-1"
+                aws eks --region ap-south-1 update-kubeconfig --name devops-eks
+                """
+            }
+        }
+    }
+    stage('deploy into eks'){
+        steps{
+            script{
+                sh 'kubectl apply -f .'
             }
         }
     }
