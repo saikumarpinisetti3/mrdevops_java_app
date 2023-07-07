@@ -78,6 +78,14 @@ pipeline{
             }
         }
     }
+        stage('scanning tje image fo r vulnerabilities: TRIVY'){
+        steps{
+            script{
+                    sh 'trivy image saikumarpinisetti/devops:latest > scan.txt'
+                    sh 'cat scan.txt'
+            }
+        }
+    }+
 
     }
 }
