@@ -98,7 +98,7 @@ pipeline{
                 aws configure set aws_access_key_id "$access_key"
                 aws configure set aws_secret_access_key "$secret_key"
                 aws configure set region "ap-south-1"
-                aws eks --region ap-south-1 update-kubeconfig --name devops-eks
+                aws eks --region ap-south-1 update-kubeconfig --name devops_eks
                 """
             }
         }
