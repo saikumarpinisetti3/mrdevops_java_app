@@ -45,5 +45,26 @@ pipeline{
                 }
             }
         }
+        stage('push artifact to the nexus:NEXUS'){
+            steps{
+                script{
+                    nexusArtifactUploader artifacts: [
+                        [
+                            artifactId: 'java-app',
+                             classifier: '',
+                              file: 'target/java-app0.0.1.jar',
+                               type: 'jar'
+                               ]
+                          ],
+                                credentialsId: 'nexus',
+                                groupId: 'com.minikube.sample',
+                                nexusUrl: '65.0.127.111:8081',
+                                nexusVersion: 'nexus3',
+                                protocol: 'http', 
+                                repository: '/java-app', 
+                                version: '0.0.1'
+                }
+            }
+        }
     }
 }
