@@ -85,7 +85,7 @@ pipeline{
                     sh 'cat scan.txt'
             }
         }
-    }+
+    }
 
     }
 }
