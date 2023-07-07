@@ -56,7 +56,7 @@ pipeline{
                                type: 'jar'
                                ]
                           ],
-                                credentialsId: 'nexus3',
+                                credentialsId: 'nexus',
                                 groupId: 'com.minikube.sample',
                                 nexusUrl: '65.0.127.111:8081',
                                 nexusVersion: 'nexus3',
