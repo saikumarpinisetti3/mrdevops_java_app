@@ -45,7 +45,7 @@ pipeline{
                 }
             }
         }
-        stage('push artifact to the nexus:NEXUS') {
+       stage('push artifact to the nexus:NEXUS') {
     steps {
         script {
             nexusArtifactUploader artifacts: [
@@ -66,6 +66,18 @@ pipeline{
         }
     }
 }
+    stage('pushing to docker hub: docker hub'){
+        steps{
+            scrpt{
+                sh 'docker build -t devops'
+                sh 'docker image tag devops saikumarpinisetti/devops:v1'
+                sh 'docker image tag devops saikumarpinisetti/devops:latest'
+                sh 'docker login -u saikumarpinisetti -p Supershot#143'
+                sh 'docker push saikumarpinisetti/devops:v1'
+                sh 'docker push saikumarpinisetti/devops:latest'
+            }
+        }
+    }
 
     }
 }
