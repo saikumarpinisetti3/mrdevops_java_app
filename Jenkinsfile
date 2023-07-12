@@ -10,6 +10,14 @@ pipeline{
                 }
 
         }
+         stage('sonar'){
+            steps{
+                script{
+                    withSonarQubeEnv(credentialsId: 'sonaq') {
+            }
+                }
+            }
+        }
         stage('cleaning packages:MVN'){
             steps{
             script{
