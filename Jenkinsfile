@@ -26,6 +26,15 @@ pipeline{
             }
         }
         }
+
+        stage(' packages:MVN'){
+            steps{
+
+            script{
+                sh 'mvn clean package'
+            }
+        }
+        }
     }
 
 }
