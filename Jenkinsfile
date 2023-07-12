@@ -42,6 +42,29 @@ pipeline{
                 }
             }
         }
+
+         stage('pushing artifact to the nexus'){
+            steps{
+                script{
+                    nexusArtifactUploader artifacts: 
+                    [
+                        [
+                            artifactId: 'kubernetes-configmap-reload', 
+                            classifier: '',
+                             file: 'targets/kubernetes-configmap-reload-0.0.1.jar',
+                              type: 'jar'
+                              ]
+                        ], 
+                        credentialsId: 'nexus',
+                         groupId: 'com.minikube.sample',
+                          nexusUrl: '3.7.45.84',
+                           nexusVersion: 'nexus3',
+                            protocol: 'http', 
+                            repository: 'maven',
+                             version: '0.0.1'
+                }
+            }
+        }
     }
 
 }
