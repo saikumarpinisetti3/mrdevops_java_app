@@ -57,7 +57,7 @@ pipeline{
                         ], 
                         credentialsId: 'nexus',
                          groupId: 'com.minikube.sample',
-                          nexusUrl: '3.7.45.84',
+                          nexusUrl: 'http://3.7.45.84',
                            nexusVersion: 'nexus3',
                             protocol: 'http', 
                             repository: 'maven',
