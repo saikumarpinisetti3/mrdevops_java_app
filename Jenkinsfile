@@ -10,6 +10,12 @@ pipeline{
                 }
 
         }
+        stage('cleaning packages:MVN'){
+
+            script{
+                ah 'mvn clean'
+            }
+        }
     }
 
 }
