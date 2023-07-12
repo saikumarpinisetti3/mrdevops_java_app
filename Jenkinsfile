@@ -51,7 +51,7 @@ pipeline{
                         [
                             artifactId: 'kubernetes-configmap-reload', 
                             classifier: '',
-                             file: 'targets/kubernetes-configmap-reload-0.0.1.jar',
+                             file: 'target/kubernetes-configmap-reload-0.0.1.jar',
                               type: 'jar'
                               ]
                         ], 
