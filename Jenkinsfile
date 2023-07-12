@@ -11,10 +11,11 @@ pipeline{
 
         }
         stage('cleaning packages:MVN'){
-
+            steps{
             script{
-                ah 'mvn clean'
+                sh 'mvn clean'
             }
+        }
         }
     }
 
