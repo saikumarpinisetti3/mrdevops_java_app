@@ -94,7 +94,7 @@ pipeline{
             steps{
                 script{
 
-                    trivyimage('saikumarpinisetti/miniapp:latest') > scan.txt
+                    trivyimage 'saikumarpinisetti/miniapp:latest' > scan.txt
                     sh 'cat scan.txt'
                 }
             }
