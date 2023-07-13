@@ -76,6 +76,19 @@ pipeline{
             }
         }
 
+        stage('docker image push'){
+            steps{
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'hub', usernameVariable: 'docker')]) {
+                        sh 'docker login -u ${docker} -p ${hub}'
+                        sh 'docker push miniapp:latest ${docker}/miniapp:latest'
+                        sh 'docker push miniapp:version1 ${docker}/miniapp:version1'
+
+                    }
+                }
+            }
+        }
+
     }
 
 }
