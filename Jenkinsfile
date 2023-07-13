@@ -71,7 +71,7 @@ pipeline{
                 script{
                      def jobName = env.JOB_NAME.replaceAll('/', '-')
             def buildNumber = env.BUILD_NUMBER
-                    sh 'docker build -t saikumarpinisetti3/miniapp:V1 .'
+                    sh 'docker build -t miniapp:V1 .'
                 }
             }
         }
