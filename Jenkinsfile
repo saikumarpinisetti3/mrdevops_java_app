@@ -69,9 +69,9 @@ pipeline{
         stage('docker image build'){
             steps{
                 script{
-                     def jobName = env.JOB_NAME.replaceAll('/', '-')
-            def buildNumber = env.BUILD_NUMBER
-                    sh 'docker build -t miniapp:V1 .'
+                    sh 'docker build -t saikumarpinisetti/miniapp:V1 .'
+                    sh 'docker image tag saikumarpinisetti/miniapp:latest'
+                    sh 'docker image tag saikumarpinisetti/miniapp:version1'
                 }
             }
         }
@@ -81,8 +81,8 @@ pipeline{
                 script{
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'hub', usernameVariable: 'docker')]) {
                         sh 'docker login -u ${docker} -p ${hub}'
-                        sh 'docker push miniapp:V1'
-                        sh 'docker push miniapp:version1'
+                        sh 'docker push saikumarpinisetti/miniapp:V1'
+                        sh 'docker push saikumarpinisetti/miniapp:version1'
 
                     }
                 }
