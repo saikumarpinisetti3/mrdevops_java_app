@@ -1,10 +1,9 @@
- apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myjavaapp-deployment
   labels:
     app: myjavaapp
-
 spec:
   replicas: 3
   selector:
@@ -20,8 +19,9 @@ spec:
           image: saikumarpinisetti/miniapp:latest
           ports:
             - containerPort: 8080
+
 ---
-  apiVersion: v1
+apiVersion: v1
 kind: Service
 metadata:
   name: myjavaapp-service
@@ -33,4 +33,3 @@ spec:
       port: 80
       targetPort: 8080
   type: LoadBalancer
- 
