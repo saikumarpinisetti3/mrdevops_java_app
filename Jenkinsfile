@@ -81,7 +81,7 @@ pipeline{
                 script{
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'hub', usernameVariable: 'docker')]) {
                         sh 'docker login -u ${docker} -p ${hub}'
-                        sh 'docker push miniapp:latest'
+                        sh 'docker push miniapp:V1'
                         sh 'docker push miniapp:version1'
 
                     }
