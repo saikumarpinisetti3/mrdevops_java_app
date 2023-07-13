@@ -90,15 +90,14 @@ pipeline{
             }
         }
         
-        stage('image scanning'){
-            steps{
-                script{
-
-                   sh 'trivyimage 'saikumarpinisetti/miniapp:latest' > scan.txt'
-                    sh 'cat scan.txt'
-                }
-            }
+     stage('image scanning') {
+    steps {
+        script {
+            sh 'trivy image saikumarpinisetti/miniapp:latest > scan.txt'
+            sh 'cat scan.txt'
         }
+    }
+}
         
     }
 
