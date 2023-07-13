@@ -1,4 +1,4 @@
-FROM maven as build
+FROM maven:3.8.3 as build
 WORKDIR /app
 COPY . .
 RUN mvn install
