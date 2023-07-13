@@ -1,10 +1,11 @@
 FROM maven as build
 WORKDIR /app
 COPY . .
-RUN mvn clean install
+RUN mvn install
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jdk-alpine3.9
 WORKDIR /app
-COPY ./target/*.jar app.jar
-EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+COPY --from=build /app/target/kubernetes-configmap-reload-0.0.1.jar /app/
+EXPOSE 9099
+CMD ["java", "-jar", "/app/kubernetes-configmap-reload-0.0.1.jar"]
+
