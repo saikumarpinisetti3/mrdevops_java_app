@@ -66,15 +66,16 @@ pipeline{
             }
         }
 
-        stage('docker image build'){
-            steps{
-                script{
-                    sh 'docker build -t saikumarpinisetti/miniapp:V1 .'
-                    sh 'docker image tag saikumarpinisetti/miniapp:latest'
-                    sh 'docker image tag saikumarpinisetti/miniapp:version1'
-                }
-            }
+       stage('docker image build') {
+    steps {
+        script {
+            sh 'docker build -t saikumarpinisetti/miniapp:V1 .'
+            sh 'docker image tag saikumarpinisetti/miniapp:V1 saikumarpinisetti/miniapp:latest'
+            sh 'docker image tag saikumarpinisetti/miniapp:V1 saikumarpinisetti/miniapp:version1'
         }
+    }
+}
+
 
         stage('docker image push'){
             steps{
