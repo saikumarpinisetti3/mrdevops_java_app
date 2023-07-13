@@ -99,15 +99,6 @@ pipeline{
             }
         }
         
-        stage('image scanning'){
-            steps{
-                script{
-
-                  trivyimage('saikumarpinisetti/miniapp:latest')
-                }
-            }
-        }
-
     }
 
 }
