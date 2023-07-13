@@ -103,7 +103,7 @@ pipeline{
             steps{
                 script{
 
-                    trivyimage('saikumarpinisetti/miniapp:latest')
+                  sh 'trivyimage('saikumarpinisetti/miniapp:latest')'
                 }
             }
         }
