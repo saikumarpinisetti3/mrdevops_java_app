@@ -69,9 +69,9 @@ pipeline{
        stage('docker image build') {
     steps {
         script {
-            sh 'docker build -t saikumarpinisetti/miniapp:V1 .'
-            sh 'docker image tag saikumarpinisetti/miniapp:V1 saikumarpinisetti/miniapp:latest'
-            sh 'docker image tag saikumarpinisetti/miniapp:V1 saikumarpinisetti/miniapp:version1'
+            sh 'docker build -t miniapp:V1 .'
+            sh 'docker image tag miniapp:V1 saikumarpinisetti/miniapp:latest'
+            //sh 'docker image tag saikumarpinisetti/miniapp:V1 saikumarpinisetti/miniapp:version1'
         }
     }
 }
@@ -82,8 +82,8 @@ pipeline{
                 script{
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'hub', usernameVariable: 'docker')]) {
                         sh 'docker login -u ${docker} -p ${hub}'
-                        sh 'docker push saikumarpinisetti/miniapp:V1'
-                        sh 'docker push saikumarpinisetti/miniapp:version1'
+                        sh 'docker push saikumarpinisetti/miniapp:latest'
+                       // sh 'docker push saikumarpinisetti/miniapp:version1'
 
                     }
                 }
