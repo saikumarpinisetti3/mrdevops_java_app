@@ -69,10 +69,11 @@ pipeline{
         stage('docker image build'){
             steps{
                 script{
-                    sh 'docker build .'
+                    sh 'docker build -t saikumarpinisetti/${env.JOB_NAME}:${env.BUILD_NUMBER} .'
                 }
             }
         }
+
     }
 
 }
