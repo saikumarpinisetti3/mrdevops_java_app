@@ -1,6 +1,11 @@
 pipeline{
 
     agent any
+    environment{
+
+        ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
+        SECRET_KEY = credentials('AWS_SECRET_KEY_ID')
+    }
     stages{
         stage('gitcheckout:GIT'){
                 steps{
@@ -98,7 +103,27 @@ pipeline{
         }
     }
 }
-        
+        stage('Connect to EKS '){
+        steps{
+               script{
+                sh """
+                aws configure set aws_access_key_id "$ACCESS_KEY"
+                aws configure set aws_secret_access_key "$SECRET_KEY"
+                aws configure set region "ap-south-1"
+                aws eks --region ap-south-1 update-kubeconfig --name devopsthehardway-cluster
+                """
+            }
+        }
+        }
+        stage ('deploying eks'){
+            steps{
+                script{
+                    sh """
+                      kubectl apply -f .
+                    """
+                }
+            }
+        }
     }
 
 }
