@@ -1,9 +1,9 @@
-FROM maven:3.8.3 as build
+FROM maven as build
 WORKDIR /app
 COPY . .
 RUN mvn install
 
-FROM adoptopenjdk:11-jre-hotspot
+FROM  openjdk:11.0
 WORKDIR /app
 COPY --from=build /app/target/kubernetes-configmap-reload-0.0.1.jar /app/
 EXPOSE 9099
