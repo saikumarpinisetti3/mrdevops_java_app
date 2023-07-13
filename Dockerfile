@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 RUN mvn install
 
-FROM openjdk:8-jdk-alpine3.9
+FROM adoptopenjdk:11-jre-hotspot
 WORKDIR /app
 COPY --from=build /app/target/kubernetes-configmap-reload-0.0.1.jar /app/
 EXPOSE 9099
